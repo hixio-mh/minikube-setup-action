@@ -12,7 +12,7 @@ try {
     console.error( `${lastCommandRunning.stderr.toString()}` );
 
     console.log(`Installing Minikube...`);
-    lastCommandRunning = spawnSync('sudo', ['dpkg', '-i', `${minikubeVersion}.deb`]);
+    lastCommandRunning = spawnSync('sudo', ['dpkg', '-i', `minikube_${minikubeVersion}.deb`]);
     console.log( `${lastCommandRunning.stdout.toString()}` );
     console.error( `${lastCommandRunning.stderr.toString()}` );
 
