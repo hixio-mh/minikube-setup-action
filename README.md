@@ -1,4 +1,4 @@
-# Minikube wrapper action
+# Minikube setup action
 
 This action installs a VM-free Kubernetes cluster using Minikube.
 
