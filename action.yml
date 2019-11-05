@@ -1,7 +1,8 @@
 name: 'minikube-setup-action'
 description: 'Installs minikube in your Github Actions workflow.'
-icon: 'download-cloud'
-color: 'blue'
+branding:
+  icon: 'download-cloud'
+  color: 'blue'
 inputs:
   minikube-version:
     description: 'Minikube version to install'
