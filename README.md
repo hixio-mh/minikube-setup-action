@@ -30,6 +30,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Setup Minikube
+      id: minikube
       uses: CodingNagger/minikube-setup-action@v1.0.2
     - name: Launch Minikube
       run: eval ${{ steps.minikube.outputs.launcher }}
