@@ -14,4 +14,18 @@ This action installs a VM-free Kubernetes cluster using Minikube.
 
 ## Example usage
 
-uses: CodingNagger/minikube-setup-action@v1
+```yaml
+name: "Minikube workflow"
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: CodingNagger/minikube-setup-action@v1.0.1
+    # install your containers / kubectl apply ...
+    - name: Check pods
+      run: |
+        kubectl get pods
+```
