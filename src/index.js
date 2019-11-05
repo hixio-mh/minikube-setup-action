@@ -9,10 +9,12 @@ try {
     console.log(`Downloading Minikube...`);
     var lastCommandRunning = spawnSync('curl', ['-LO', `https://storage.googleapis.com/minikube/releases/latest/minikube_${minikubeVersion}.deb`]);
     console.log( `${lastCommandRunning.stdout.toString()}` );
+    console.error( `${lastCommandRunning.stderr.toString()}` );
 
     console.log(`Installing Minikube...`);
     lastCommandRunning = spawnSync('sudo', ['dpkg', '-i', `${minikubeVersion}.deb`]);
     console.log( `${lastCommandRunning.stdout.toString()}` );
+    console.error( `${lastCommandRunning.stderr.toString()}` );
 
     console.log(`Creating Minikube launch command...`);
 
