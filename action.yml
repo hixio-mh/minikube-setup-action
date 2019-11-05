@@ -11,6 +11,9 @@ inputs:
     description: 'Kubernetes version to install'
     required: false
     default: '1.14.6'
+outputs:
+  launcher:
+    description: 'Command to execute to launch minikube'
 runs:
   using: 'node12'
   main: 'src/index.js'

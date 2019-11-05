@@ -8,21 +8,23 @@ try {
 
     console.log(`Downloading Minikube...`);
     var lastCommandRunning = spawnSync('curl', ['-LO', `https://storage.googleapis.com/minikube/releases/latest/minikube_${minikubeVersion}.deb`]);
+    console.log( `${lastCommandRunning.stdout.toString()}` );
 
     console.log(`Installing Minikube...`);
     lastCommandRunning = spawnSync('sudo', ['dpkg', '-i', `${minikubeVersion}.deb`]);
+    console.log( `${lastCommandRunning.stdout.toString()}` );
 
-    console.log(`Starting Minikube cluster...`);
-    lastCommandRunning = spawnSync('sudo', 
-        ['-E', 'minikube', 'start', '--vm-driver=none', '--kubernetes-version', `v${kubernetesVersion}`, '--extra-config', 'kubeadm.ignore-preflight-errors=SystemVerification'], 
-        { env: { CHANGE_MINIKUBE_NONE_USER: 'true' }} );
+    console.log(`Creating Minikube launch command...`);
 
-    console.log('Show Minikube cluster info...');
-    lastCommandRunning = spawnSync('kubectl', ['cluster-info']);
+    const launcher = ['CHANGE_MINIKUBE_NONE_USER=true', 'sudo', '-E', 'minikube', 'start', '--vm-driver=none', '--kubernetes-version', `v${kubernetesVersion}`, '--extra-config', 'kubeadm.ignore-preflight-errors=SystemVerification'].join(' ');
+    
+    core.setOutput('launcher', launcher);
+    
+    console.log(`Ready to launch minikube!!!`);
 } catch (error) {
     if (!!lastCommandRunning) {
-        console.log( `stdout: ${lastCommandRunning.stdout.toString()}` );
-        console.log( `stderr: ${lastCommandRunning.stderr.toString()}` );
+        console.log( `${lastCommandRunning.stdout.toString()}` );
+        console.error( `${lastCommandRunning.stderr.toString()}` );
     }
     core.setFailed(error.message);
 }
