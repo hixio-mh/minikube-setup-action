@@ -1,5 +1,5 @@
-name: 'minikube-setup-action'
-description: 'Installs minikube in your Github Actions workflow.'
+name: 'Single Node Kubernetes Cluster'
+description: 'Installs a Minikube powered single node Kubernetes cluster in your Github Actions workflow.'
 branding:
   icon: 'download-cloud'
   color: 'blue'
